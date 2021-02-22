@@ -1,7 +1,11 @@
 package com.example.garbagecollector.fragments.user_fragments;
 
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -12,15 +16,27 @@ import android.widget.TextView;
 
 import com.example.garbagecollector.MainActivity;
 import com.example.garbagecollector.R;
+import com.example.garbagecollector.StartActivity;
+
+import java.util.List;
 
 
 public class UserFragment extends Fragment {
+    private AppCompatButton btn_logout;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user, container, false);
+        btn_logout = view.findViewById(R.id.btn_logout);
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
+
         return view;
     }
     @Override

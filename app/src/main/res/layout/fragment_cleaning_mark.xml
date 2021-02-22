@@ -11,24 +11,24 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/btn_clean"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Убрать"
             android:textStyle="bold"
-            android:textColor="@color/dark_green"
-            android:background="@drawable/green_frame"
+            android:textColor="@color/gray"
+            android:background="@drawable/gray_frame"
             android:gravity="center"/>
 
         <TextView
-            android:id="@+id/btn_mark"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Отметить"
             android:textStyle="bold"
-            android:textColor="@color/gray"
-            android:background="@drawable/gray_frame"
+            android:textColor="@color/dark_green"
+            android:background="@drawable/green_frame"
             android:gravity="center"/>
 
 
@@ -41,14 +41,15 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="60dp"
+            android:layout_width="260dp"
             android:layout_height="match_parent"
-            android:text="Москва"/>
+            android:text="Ваш список мест"/>
 
-        <ImageView
-            android:layout_width="20dp"
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="30dp"
             android:layout_height="20dp"
-            android:src="@drawable/ic_arrow_down" />
+            android:textSize="8sp"
+            android:background="@drawable/ic_btn_add"/>
 
     </LinearLayout>
 
