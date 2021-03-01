@@ -11,6 +11,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:textSize="18sp"
             android:id="@+id/btn_clean"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -18,17 +19,16 @@
             android:text="Убрать"
             android:textStyle="bold"
             android:textColor="@color/gray"
-            android:background="@drawable/gray_frame"
             android:gravity="center"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Отметить"
+            android:text="@string/underlined_mark_ru"
             android:textStyle="bold"
             android:textColor="@color/dark_green"
-            android:background="@drawable/green_frame"
+            android:textSize="18sp"
             android:gravity="center"/>
 
 
@@ -47,6 +47,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="30dp"
+            android:id="@+id/btn_add"
             android:layout_height="20dp"
             android:textSize="8sp"
             android:background="@drawable/ic_btn_add"/>

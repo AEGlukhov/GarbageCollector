@@ -2,13 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="70dp"
         android:layout_weight="1"
+        android:gravity="bottom"
         android:text="@string/name_ru"
         android:textSize="16sp"
         android:textStyle="bold" />
@@ -17,12 +20,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="60dp"
         android:layout_weight="1" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:layout_weight="1"
         android:text="Такой логин уже используется"
@@ -32,7 +36,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_marginLeft="25dp"
         android:layout_weight="1"
+        android:gravity="bottom"
         android:text="@string/password_ru"
         android:textSize="16sp"
         android:textStyle="bold" />
@@ -41,22 +47,23 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal">
-
-
-
-    <EditText
-        android:layout_width="260dp"
-        android:layout_height="match_parent"
+        android:orientation="horizontal"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_weight="1"
-        android:text="•••••••••••••" />
+        android:layout_marginRight="20dp">
+
+
+        <EditText
+            android:layout_width="260dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="•••••••••••••"
+            android:layout_marginRight="10dp"/>
 
         <ImageView
+            android:id="@+id/btn_show_password"
             android:layout_width="30dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_show_password"/>
+            android:src="@drawable/ic_show_password" />
 
     </LinearLayout>
 
@@ -86,7 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="60dp"
         android:layout_weight="1"
         android:text="Россия" />
 
@@ -95,7 +102,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="25dp"
+        android:layout_marginBottom="70dp"
         android:layout_weight="1"
         android:background="@drawable/button_background"
         android:text="Зарегистрироваться"

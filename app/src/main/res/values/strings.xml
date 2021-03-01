@@ -14,6 +14,8 @@
 
     <!-- Cleaning -->
     <string name="cleaning_title_ru">Уборка</string>
+    <string name="underlined_clean_ru"><u>Убрать</u></string>
+    <string name="underlined_mark_ru"><u>Отметить</u></string>
 
     <!-- Leaderboard -->
     <string name="leaderboard_title_ru">Рейтинг</string>

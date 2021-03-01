@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
@@ -14,22 +14,22 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Убрать"
-            android:textStyle="bold"
+            android:gravity="center"
+            android:text="@string/underlined_clean_ru"
             android:textColor="@color/dark_green"
-            android:background="@drawable/green_frame"
-            android:gravity="center"/>
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/btn_mark"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="Отметить"
-            android:textStyle="bold"
             android:textColor="@color/gray"
-            android:background="@drawable/gray_frame"
-            android:gravity="center"/>
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
 
     </LinearLayout>
@@ -43,7 +43,7 @@
         <TextView
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:text="Москва"/>
+            android:text="Москва" />
 
         <ImageView
             android:layout_width="20dp"
@@ -55,6 +55,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="15"/>
+        android:layout_weight="15" />
 
 </LinearLayout>
