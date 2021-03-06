@@ -21,6 +21,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/login_name"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginLeft="25dp"
@@ -35,6 +36,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginLeft="25dp"
@@ -66,13 +68,13 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/incorrect_login_password"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="25dp"
             android:layout_marginBottom="50dp"
             android:layout_weight="10"
-            android:text="Неверный логин или пароль"
             android:textColor="@color/red"
             android:textStyle="bold" />
 

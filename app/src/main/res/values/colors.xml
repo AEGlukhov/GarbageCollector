@@ -11,5 +11,8 @@
     <color name="green">#65B50B</color>
     <color name="dark_green">#31650C</color>
     <color name="red">#CF1F1F</color>
+    <color name="gold">#EDB532</color>
+    <color name="silver">#5D8081</color>
+    <color name="bronze">#9E4E10</color>
 
 </resources>

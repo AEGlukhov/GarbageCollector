@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.garbagecollector.fragments.RegisterFragment;
 import com.example.garbagecollector.fragments.cleaning_fragments.CleaningCleanFragment;
 import com.example.garbagecollector.fragments.LeaderboardFragment;
 import com.example.garbagecollector.fragments.shop_fragments.ShopBuyFragment;
