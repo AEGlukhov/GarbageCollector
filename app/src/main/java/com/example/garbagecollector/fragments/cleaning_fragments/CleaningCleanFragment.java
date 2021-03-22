@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,16 +15,32 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.garbagecollector.ClientAPI;
 import com.example.garbagecollector.MainActivity;
 import com.example.garbagecollector.R;
+import com.example.garbagecollector.adapters.CleaningCleanAdapter;
+import com.example.garbagecollector.adapters.LeaderboardAdapter;
+import com.example.garbagecollector.models.Place;
+import com.example.garbagecollector.models.User;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class CleaningCleanFragment extends Fragment {
+    Retrofit retrofit;
+    ClientAPI clientAPI;
     private TextView btn_mark;
     CleaningMarkFragment cleaningMarkFragment;
     FragmentTransaction transaction;
+    List<Place> places;
+    RecyclerView rv_cleaning_clean;
 
 
 
@@ -30,6 +48,28 @@ public class CleaningCleanFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cleaning_clean, container, false);
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.0.13:8080").addConverterFactory(GsonConverterFactory.create()).build();
+        clientAPI = retrofit.create(ClientAPI.class);
+        Call<List<Place>> call = clientAPI.getPlaces();
+        call.enqueue(new Callback<List<Place>>() {
+            @Override
+            public void onResponse(Call<List<Place>> call, Response<List<Place>> response) {
+                if (response.code() == 200) {
+                    places = (ArrayList<Place>) response.body();
+
+
+                } else {
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Place>> call, Throwable t) {
+
+            }
+        });
+        rv_cleaning_clean = view.findViewById(R.id.rv_cleaning_clean);
+        rv_cleaning_clean.setLayoutManager(new LinearLayoutManager(getContext()));
+        rv_cleaning_clean.setAdapter(new CleaningCleanAdapter(places));
         cleaningMarkFragment = new CleaningMarkFragment();
         btn_mark = view.findViewById(R.id.btn_mark);
         btn_mark.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +102,10 @@ public class CleaningCleanFragment extends Fragment {
         ((ImageView)getActivity().findViewById(R.id.btn_leaderboard)).setImageResource(R.drawable.ic_leaderboard_gray);
         ((ImageView)getActivity().findViewById(R.id.btn_user)).setImageResource(R.drawable.ic_user_gray);
 
+
+    }
+
+    public void test(){
 
     }
 

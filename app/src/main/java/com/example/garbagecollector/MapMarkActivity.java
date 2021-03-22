@@ -29,6 +29,7 @@ public class MapMarkActivity extends FragmentActivity implements OnMapReadyCallb
     GoogleMap map;
     SupportMapFragment mapFragment;
     SearchView searchView;
+
     FragmentTransaction transaction;
     AddPlaceFragment addPlaceFragment;
     private boolean isClicked = false;
@@ -48,6 +49,8 @@ public class MapMarkActivity extends FragmentActivity implements OnMapReadyCallb
         geocoder = new Geocoder(this, ruLoc);
         searchView = findViewById(R.id.sv_map_mark);
         addPlaceFragment = new AddPlaceFragment();
+
+
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map_mark);
 
@@ -111,6 +114,8 @@ public class MapMarkActivity extends FragmentActivity implements OnMapReadyCallb
                     b.putString("adress", address);
                     map.addMarker(new MarkerOptions().position(latLng).title(address));
                     transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.slide_in, R.anim.fade_out, R.anim.fade_in, R.anim.slide_out);
+                    transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                     transaction.add(R.id.ll_add, addPlaceFragment);
                     transaction.commit();
                     addPlaceFragment.setArguments(b);
@@ -118,6 +123,7 @@ public class MapMarkActivity extends FragmentActivity implements OnMapReadyCallb
                 } else{
                     map.clear();
                     transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.slide_in, R.anim.fade_out, R.anim.fade_in, R.anim.slide_out);
                     transaction.remove(addPlaceFragment);
                     transaction.commit();
                 }

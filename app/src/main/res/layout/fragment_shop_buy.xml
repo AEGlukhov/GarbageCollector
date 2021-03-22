@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="260dp"
             android:layout_height="match_parent"
-            android:text="Ваш список товаров"/>
+            android:text="@string/your_product_list"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="30dp"

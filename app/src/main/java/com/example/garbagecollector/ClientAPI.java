@@ -1,5 +1,6 @@
 package com.example.garbagecollector;
 
+import com.example.garbagecollector.models.Place;
 import com.example.garbagecollector.models.User;
 
 import java.util.List;
@@ -26,4 +27,20 @@ public interface ClientAPI {
             @Field("score") Integer score,
             @Field("photo") Integer photo
     );
+
+    @FormUrlEncoded
+    @POST("/addPlace")
+    Call<ResponseBody> addPlace(
+            @Field("ownerId") Integer ownerId,
+            @Field("cleanerId") Integer cleanerId,
+            @Field("address") String address,
+            @Field("date") String date,
+            @Field("photo") String photo,
+            @Field("lat") Double lat,
+            @Field("lon") Double lon,
+            @Field("proof") String proof
+    );
+
+    @GET("/getPlaces")
+    Call<List<Place>> getPlaces();
 }

@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Убрать"
+            android:text="@string/clean_ru"
             android:textStyle="bold"
             android:textColor="@color/gray"
             android:gravity="center"/>
@@ -56,7 +56,7 @@
             android:layout_width="0dp"
             android:layout_weight="8"
             android:layout_height="match_parent"
-            android:text="Ваш список мест"
+            android:text="@string/your_place_list_ru"
             android:gravity="center|left"
             android:paddingLeft="3dp"
             android:textStyle="bold"/>
@@ -67,7 +67,7 @@
             android:id="@+id/btn_add"
             android:layout_height="match_parent"
             android:textSize="12sp"
-            android:text="Добавить"
+            android:text="@string/add_ru"
             android:textAllCaps="false"
             android:textStyle="bold"
             android:background="@drawable/button_background"

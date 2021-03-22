@@ -8,9 +8,11 @@ import android.os.Bundle;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,16 +26,23 @@ import java.util.List;
 public class UserFragment extends Fragment {
     private AppCompatButton btn_logout;
     private TextView user_info;
+    private EditText et_name, et_password, et_country;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user, container, false);
+        et_name = view.findViewById(R.id.et_name);
+        et_password = view.findViewById(R.id.et_password);
+        et_country = view.findViewById(R.id.et_country);
         user_info = view.findViewById(R.id.user_info);
         user_info.setText(StartActivity.users.get(StartActivity.currentUserID).getName()+
                 "\nОчки: " +StartActivity.users.get(StartActivity.currentUserID).getScore().toString() +
                 "\nДеньги: " +StartActivity.users.get(StartActivity.currentUserID).getMoney().toString());
+        et_name.setText(StartActivity.users.get(StartActivity.currentUserID).getName());
+        et_password.setText(StartActivity.users.get(StartActivity.currentUserID).getPassword());
+        et_password.setTransformationMethod(new PasswordTransformationMethod());
         btn_logout = view.findViewById(R.id.btn_logout);
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override

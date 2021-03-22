@@ -12,18 +12,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.garbagecollector.ClientAPI;
 import com.example.garbagecollector.MainActivity;
 import com.example.garbagecollector.MapMarkActivity;
 import com.example.garbagecollector.R;
+import com.example.garbagecollector.models.Place;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class CleaningMarkFragment extends Fragment {
+    Retrofit retrofit;
+    ClientAPI clientAPI;
     AppCompatButton btn_add;
     private TextView btn_clean;
     CleaningCleanFragment cleaningCleanFragmentFragment;
     FragmentTransaction transaction;
+    List<Place> places;
 
 
 
@@ -31,6 +43,25 @@ public class CleaningMarkFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cleaning_mark, container, false);
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.0.13:8080").addConverterFactory(GsonConverterFactory.create()).build();
+        clientAPI = retrofit.create(ClientAPI.class);
+        Call<List<Place>> call = clientAPI.getPlaces();
+        call.enqueue(new Callback<List<Place>>() {
+            @Override
+            public void onResponse(Call<List<Place>> call, Response<List<Place>> response) {
+                if (response.code() == 200) {
+                    places = (ArrayList<Place>) response.body();
+
+
+                } else {
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Place>> call, Throwable t) {
+
+            }
+        });
         cleaningCleanFragmentFragment = new CleaningCleanFragment();
         btn_clean = view.findViewById(R.id.btn_clean);
         btn_add = view.findViewById(R.id.btn_add);

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ public class RegisterFragment extends Fragment {
     private AppCompatButton btn_register;
     private ImageView btn_show_password;
     private boolean showPassword = false;
-    private EditText register_name, register_password;
+    private EditText register_name, register_password, register_country;
 
 
     @Override
@@ -47,15 +48,20 @@ public class RegisterFragment extends Fragment {
         tv_isHave = view.findViewById(R.id.isHave);
         register_name = view.findViewById(R.id.register_name);
         register_password = view.findViewById(R.id.register_password);
+        register_country = view.findViewById(R.id.register_country);
         btn_show_password = view.findViewById(R.id.btn_show_password);
+        register_password.setTransformationMethod(new PasswordTransformationMethod());
         btn_show_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (showPassword == false) {
                     btn_show_password.setImageResource(R.drawable.ic_hide_password);
+                    register_password.setTransformationMethod(null);
                 } else {
                     btn_show_password.setImageResource(R.drawable.ic_show_password);
+                    register_password.setTransformationMethod(new PasswordTransformationMethod());
+
                 }
                 showPassword = !showPassword;
 
