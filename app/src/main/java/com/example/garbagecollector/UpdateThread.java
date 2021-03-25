@@ -1,5 +1,6 @@
 package com.example.garbagecollector;
 
+import com.example.garbagecollector.models.Place;
 import com.example.garbagecollector.models.User;
 
 import java.util.ArrayList;
@@ -37,6 +38,24 @@ public class UpdateThread extends Thread {
 
                 @Override
                 public void onFailure(Call<List<User>> call, Throwable t) {
+
+                }
+            });
+
+            Call<List<Place>> placesCall = clientAPI.getPlaces();
+            placesCall.enqueue(new Callback<List<Place>>() {
+                @Override
+                public void onResponse(Call<List<Place>> call, Response<List<Place>> response) {
+                    if (response.code() == 200) {
+                        StartActivity.places = (ArrayList<Place>) response.body();
+
+
+                    } else {
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Place>> call, Throwable t) {
 
                 }
             });

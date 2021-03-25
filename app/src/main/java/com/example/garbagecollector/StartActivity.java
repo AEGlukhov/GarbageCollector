@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.garbagecollector.fragments.RegisterFragment;
+import com.example.garbagecollector.models.Place;
 import com.example.garbagecollector.models.User;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class StartActivity extends AppCompatActivity {
     Retrofit retrofit;
     ClientAPI clientAPI;
     public static List<User> users;
+    public static List<Place> places;
     private AppCompatButton btn_login;
     private EditText login_name, login_password;
     private TextView btn_registration, incorrect_login_password;
@@ -64,6 +66,23 @@ public class StartActivity extends AppCompatActivity {
         });
         UpdateThread updateThread = new UpdateThread();
         updateThread.start();
+        Call<List<Place>> placesCall = clientAPI.getPlaces();
+        placesCall.enqueue(new Callback<List<Place>>() {
+            @Override
+            public void onResponse(Call<List<Place>> call, Response<List<Place>> response) {
+                if (response.code() == 200) {
+                    places = (ArrayList<Place>) response.body();
+
+
+                } else {
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Place>> call, Throwable t) {
+
+            }
+        });
         registerFragment = new RegisterFragment();
         btn_login = findViewById(R.id.btn_login);
         login_name = findViewById(R.id.login_name);

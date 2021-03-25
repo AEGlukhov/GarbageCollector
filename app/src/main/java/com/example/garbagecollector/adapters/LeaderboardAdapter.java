@@ -58,7 +58,12 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
 
     @Override
     public int getItemCount() {
-        return 10;
+        if (StartActivity.users.size() <10){
+            return StartActivity.users.size();
+        } else {
+            return 10;
+        }
+
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

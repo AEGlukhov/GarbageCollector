@@ -10,38 +10,51 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.garbagecollector.R;
+import com.example.garbagecollector.StartActivity;
 import com.example.garbagecollector.models.Place;
+import com.example.garbagecollector.models.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CleaningCleanAdapter extends RecyclerView.Adapter<CleaningCleanAdapter.myviewholder> {
+public class CleaningCleanAdapter extends RecyclerView.Adapter<CleaningCleanAdapter.MyViewHolder> {
 
-    List<Place> places;
+    List<Place> shownPlaces;
 
-    public CleaningCleanAdapter(List<Place> places) {
-    }
+
 
     @NonNull
     @Override
-    public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cleaning_clean_item, parent, false);
-        return new myviewholder(view);
+        
+        return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myviewholder holder, int position) {
-        holder.cleaning_clean_info.setText(places.get(position).getAddress()+"\n"+places.get(position).getDate());
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
+            holder.cleaning_clean_info.setText(shownPlaces.get(position).getAddress()+"\n"+shownPlaces.get(position).getDate());
+
+
     }
 
     @Override
     public int getItemCount() {
-        return places.size();
+        shownPlaces = new ArrayList<>();
+        for (int i = 0; i < StartActivity.places.size(); i++) {
+            if (StartActivity.currentUserID != StartActivity.places.get(i).getOwnerId()-1){
+                shownPlaces.add(StartActivity.places.get(i));
+            }
+        }
+        return shownPlaces.size();
     }
 
-    class myviewholder extends RecyclerView.ViewHolder{
+    class MyViewHolder extends RecyclerView.ViewHolder{
         ImageView cleaning_clean_photo;
         TextView cleaning_clean_info;
-        public myviewholder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             cleaning_clean_photo = itemView.findViewById(R.id.cleaning_clean_photo);
             cleaning_clean_info = itemView.findViewById(R.id.cleaning_clean_info);
