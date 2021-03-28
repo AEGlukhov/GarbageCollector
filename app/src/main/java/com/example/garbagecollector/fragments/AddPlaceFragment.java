@@ -14,6 +14,9 @@ import com.example.garbagecollector.ClientAPI;
 import com.example.garbagecollector.R;
 import com.example.garbagecollector.StartActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,7 +47,7 @@ public class AddPlaceFragment extends Fragment {
         add_marked_place.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<ResponseBody> addPlaceCall = clientAPI.addPlace(StartActivity.currentUserID+1, 0, text, "20mar", "photo", 5.1, 5.2, "proof");
+                Call<ResponseBody> addPlaceCall = clientAPI.addPlace(StartActivity.currentUserID+1, 0, text, new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime()), "photo", 5.1, 5.2, "proof");
                 addPlaceCall.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

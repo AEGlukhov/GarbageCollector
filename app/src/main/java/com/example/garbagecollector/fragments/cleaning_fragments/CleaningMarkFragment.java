@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,8 @@ import com.example.garbagecollector.ClientAPI;
 import com.example.garbagecollector.MainActivity;
 import com.example.garbagecollector.MapMarkActivity;
 import com.example.garbagecollector.R;
+import com.example.garbagecollector.adapters.CleaningCleanAdapter;
+import com.example.garbagecollector.adapters.CleaningMarkAdapter;
 import com.example.garbagecollector.models.Place;
 
 import java.util.ArrayList;
@@ -33,6 +37,8 @@ public class CleaningMarkFragment extends Fragment {
     private TextView btn_clean;
     CleaningCleanFragment cleaningCleanFragmentFragment;
     FragmentTransaction transaction;
+    RecyclerView rv_cleaning_mark;
+    CleaningMarkAdapter cleaningMarkAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,7 +47,10 @@ public class CleaningMarkFragment extends Fragment {
         cleaningCleanFragmentFragment = new CleaningCleanFragment();
         btn_clean = view.findViewById(R.id.btn_clean);
         btn_add = view.findViewById(R.id.btn_add);
-
+        rv_cleaning_mark = view.findViewById(R.id.rv_cleaning_mark);
+        rv_cleaning_mark.setLayoutManager(new LinearLayoutManager(getContext()));
+        cleaningMarkAdapter = new CleaningMarkAdapter();
+        rv_cleaning_mark.setAdapter(cleaningMarkAdapter);
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

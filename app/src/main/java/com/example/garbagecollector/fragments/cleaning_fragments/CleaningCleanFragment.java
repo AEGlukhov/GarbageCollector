@@ -50,7 +50,6 @@ public class CleaningCleanFragment extends Fragment {
         rv_cleaning_clean.setLayoutManager(new LinearLayoutManager(getContext()));
         cleaningCleanAdapter = new CleaningCleanAdapter();
         rv_cleaning_clean.setAdapter(cleaningCleanAdapter);
-        //rv_cleaning_clean.setAdapter(new CleaningCleanAdapter());
         cleaningMarkFragment = new CleaningMarkFragment();
         btn_mark = view.findViewById(R.id.btn_mark);
         btn_mark.setOnClickListener(new View.OnClickListener() {
