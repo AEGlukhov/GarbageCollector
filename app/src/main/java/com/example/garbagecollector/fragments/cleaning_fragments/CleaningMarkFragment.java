@@ -80,4 +80,10 @@ public class CleaningMarkFragment extends Fragment {
         super.onStart();
         MainActivity.setIsFirstFragment(false);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        cleaningMarkAdapter.notifyDataSetChanged();
+    }
 }

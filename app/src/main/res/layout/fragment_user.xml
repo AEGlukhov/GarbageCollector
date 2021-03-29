@@ -16,21 +16,37 @@
             android:layout_height="match_parent"
             android:layout_weight="3" />
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_margin="10dp">
+            android:orientation="vertical">
+
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_gravity="bottom|right"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="3"
                 android:background="@drawable/photo_edit"
-                android:src="@drawable/ic_edit"
-                android:padding="2dp"/>
+                android:padding="2dp" />
 
-        </FrameLayout>
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_logout"
+                android:text="@string/edit_profile_ru"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
 
     </LinearLayout>
@@ -71,13 +87,11 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="30dp"
         android:layout_weight="1"
+        android:backgroundTint="@color/gray"
         android:clickable="false"
         android:cursorVisible="false"
         android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:backgroundTint="@color/gray"/>
-
-
+        android:focusableInTouchMode="false" />
 
 
     <LinearLayout
@@ -111,11 +125,11 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="30dp"
         android:layout_weight="1"
+        android:backgroundTint="@color/gray"
         android:clickable="false"
         android:cursorVisible="false"
         android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:backgroundTint="@color/gray"/>
+        android:focusableInTouchMode="false" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -148,12 +162,12 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="30dp"
         android:layout_weight="1"
-        android:text="Россия"
+        android:backgroundTint="@color/gray"
         android:clickable="false"
         android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:backgroundTint="@color/gray"/>
+        android:text="Россия" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_logout"
