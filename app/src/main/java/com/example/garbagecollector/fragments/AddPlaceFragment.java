@@ -59,6 +59,8 @@ public class AddPlaceFragment extends Fragment {
 
                     }
                 });
+
+                getActivity().onBackPressed();
             }
         });
         return view;

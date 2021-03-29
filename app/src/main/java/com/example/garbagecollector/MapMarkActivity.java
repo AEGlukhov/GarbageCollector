@@ -38,6 +38,13 @@ public class MapMarkActivity extends FragmentActivity implements OnMapReadyCallb
     Locale ruLoc;
 
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
