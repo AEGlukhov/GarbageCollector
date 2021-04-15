@@ -82,7 +82,7 @@ public class RegisterFragment extends Fragment {
                     tv_isHave.setText("Такой логин уже используется");
                 } else {
 
-                    Call<ResponseBody> addUserCall = clientAPI.addUser(register_name.getText().toString(), register_password.getText().toString(), "Russia", 0, 0, 0);
+                    Call<ResponseBody> addUserCall = clientAPI.addUser(register_name.getText().toString(), register_password.getText().toString(), "Russia", 0, 0, "0");
                     addUserCall.enqueue(new Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

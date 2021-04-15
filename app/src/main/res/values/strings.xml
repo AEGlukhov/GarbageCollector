@@ -7,6 +7,7 @@
     <string name="password_ru">Пароль</string>
     <string name="country_ru">Страна</string>
     <string name="add_ru">Добавить</string>
+    <string name="save_ru">Сохранить</string>
 
     <!-- Login and Register -->
     <string name="sign_in_ru">Вход</string>

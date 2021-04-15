@@ -10,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 
 public interface ClientAPI {
@@ -25,7 +26,7 @@ public interface ClientAPI {
             @Field("country") String country,
             @Field("money") Integer money,
             @Field("score") Integer score,
-            @Field("photo") Integer photo
+            @Field("photo") String photo
     );
 
     @FormUrlEncoded
@@ -43,4 +44,18 @@ public interface ClientAPI {
 
     @GET("/getPlaces")
     Call<List<Place>> getPlaces();
+
+    @FormUrlEncoded
+    @PATCH("/changeUser")
+    Call<ResponseBody> changeUser(
+            @Field("id") Integer id,
+            @Field("name") String name,
+            @Field("password") String password,
+            @Field("country") String country,
+            @Field("money") Integer money,
+            @Field("score") Integer score,
+            @Field("photo") String photo
+    );
+
+
 }

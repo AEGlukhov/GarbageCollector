@@ -20,6 +20,7 @@ import com.example.garbagecollector.fragments.user_fragments.UserFragment;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    public static boolean usableBack;
     private FrameLayout frameLayout;
     CleaningCleanFragment cleaningCleanFragment;
     LeaderboardFragment leaderboardFragment;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         frameLayout = findViewById(R.id.frameLayout);
         title_main = findViewById(R.id.title_main);
         cleaningCleanFragment = new CleaningCleanFragment();
+        usableBack = true;
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.frameLayout, cleaningCleanFragment);
         transaction.commit();
@@ -124,30 +126,30 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
-        if (isFirstFragment == false) {
-
-
-            List<Fragment> fragments = getSupportFragmentManager().getFragments();
-            int size = fragments.size();
-            if (size > 0)
-                getSupportFragmentManager().beginTransaction().remove(fragments.get(size - 1)).commit();
+        if (usableBack == true) {
+            if (isFirstFragment == false) {
 
 
-            transaction = getSupportFragmentManager().beginTransaction();
-            transaction.add(R.id.frameLayout, cleaningCleanFragment);
-            transaction.commit();
-            btn_leaderboard.setClickable(true);
-            btn_shop.setClickable(true);
-            btn_user.setClickable(true);
-        } else {
-            this.finish();
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+                List<Fragment> fragments = getSupportFragmentManager().getFragments();
+                int size = fragments.size();
+                if (size > 0)
+                    getSupportFragmentManager().beginTransaction().remove(fragments.get(size - 1)).commit();
+
+
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.add(R.id.frameLayout, cleaningCleanFragment);
+                transaction.commit();
+                btn_leaderboard.setClickable(true);
+                btn_shop.setClickable(true);
+                btn_user.setClickable(true);
+            } else {
+                this.finish();
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
         }
-
     }
 
 
