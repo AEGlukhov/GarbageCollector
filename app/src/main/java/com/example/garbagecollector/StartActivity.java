@@ -5,10 +5,15 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.garbagecollector.fragments.RegisterFragment;
@@ -36,6 +41,8 @@ public class StartActivity extends AppCompatActivity {
     FragmentTransaction transaction;
     RegisterFragment registerFragment;
     private static boolean isRegisterFragment;
+    private boolean rememberMe = false;
+    private ImageView checkbox_remember;
 
     public static void setIsRegisterFragment(boolean isFirstFragment) {
         StartActivity.isRegisterFragment = isFirstFragment;
@@ -87,7 +94,25 @@ public class StartActivity extends AppCompatActivity {
         btn_login = findViewById(R.id.btn_login);
         login_name = findViewById(R.id.login_name);
         login_password = findViewById(R.id.login_password);
+        SharedPreferences sp = getSharedPreferences("Key", Activity.MODE_PRIVATE);
+        login_name.setText(sp.getString("Name", ""));
+        login_password.setText(sp.getString("Password", ""));
         incorrect_login_password = findViewById(R.id.incorrect_login_password);
+        checkbox_remember = findViewById(R.id.checkbox_remember);
+        checkbox_remember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rememberMe == true) {
+                    checkbox_remember.setImageResource(R.drawable.ic_empty_checkbox);
+
+                } else {
+                    checkbox_remember.setImageResource(R.drawable.ic_checkbox);
+
+
+                }
+                rememberMe =!rememberMe;
+            }
+        });
         btn_registration = findViewById(R.id.btn_registration);
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +129,13 @@ public class StartActivity extends AppCompatActivity {
                 if (isHave == true && login_password.getText().toString().equals(StartActivity.users.get(thisID).getPassword())) {
                     currentUserID = thisID;
                     incorrect_login_password.setText("");
+                    if (rememberMe == true){
+                        SharedPreferences sp = getSharedPreferences("Key", Activity.MODE_PRIVATE);
+                        SharedPreferences.Editor edt = sp.edit();
+                        edt.putString("Name", login_name.getText().toString());
+                        edt.putString("Password", login_password.getText().toString());
+                        edt.commit();
+                    }
                     Intent intent = new Intent(StartActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {

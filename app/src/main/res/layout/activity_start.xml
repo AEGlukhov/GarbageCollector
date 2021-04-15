@@ -51,6 +51,33 @@
             android:textCursorDrawable="@drawable/cursor_color"
             android:textStyle="bold" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:orientation="horizontal"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp">
+
+            <ImageView
+                android:id="@+id/checkbox_remember"
+                android:layout_marginTop="3dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_empty_checkbox"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/remember_me_ru"
+                android:textStyle="bold"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="6dp"
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
@@ -73,7 +100,7 @@
             android:layout_height="0dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="25dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="40dp"
             android:layout_weight="10"
             android:textColor="@color/red"
             android:textStyle="bold" />
