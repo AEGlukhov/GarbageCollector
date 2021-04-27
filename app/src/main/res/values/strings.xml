@@ -29,7 +29,10 @@
 
     <!-- Shop -->
     <string name="shop_title_ru">Магазин</string>
-    <string name="your_product_list">Ваш список товаров</string>
+    <string name="partners_ru">Наши партнёры</string>
+    <string name="got_ru">Понятно</string>
+    <string name="partners_info_ru">Наши партнёры - это список компаний, которые готовы предоставить вам товары или услуги за деньги на вашем аккаунте. 1 монета Garbage Collector = 1 рублю. Эти монеты вы получаете каждый раз, когда убираете место.</string>
+
 
     <!-- User -->
     <string name="user_title_ru">Профиль</string>

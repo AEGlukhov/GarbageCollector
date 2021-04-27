@@ -1,7 +1,11 @@
 package com.example.garbagecollector.fragments.user_fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,8 +22,14 @@ import com.example.garbagecollector.ClientAPI;
 import com.example.garbagecollector.MainActivity;
 import com.example.garbagecollector.R;
 import com.example.garbagecollector.StartActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.List;
+import java.util.UUID;
 
 
 import okhttp3.ResponseBody;
@@ -40,6 +50,11 @@ public class EditUserFragment extends Fragment {
     private boolean showPassword = false;
     FragmentTransaction transaction;
     UserFragment userFragment;
+    private String ref = "photo";
+    private Uri imageUri;
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +62,7 @@ public class EditUserFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_edit_user, container, false);
         retrofit = new Retrofit.Builder().baseUrl("http://192.168.0.13:8080").addConverterFactory(GsonConverterFactory.create()).build();
         clientAPI = retrofit.create(ClientAPI.class);
+        ref = StartActivity.users.get(StartActivity.currentUserID).getPhoto();
         edit_name = view.findViewById(R.id.edit_name);
         edit_password = view.findViewById(R.id.edit_password);
         edit_password.setTransformationMethod(new PasswordTransformationMethod());
@@ -54,6 +70,19 @@ public class EditUserFragment extends Fragment {
         edit_user_photo = view.findViewById(R.id.edit_user_photo);
         tv_isHave = view.findViewById(R.id.isHave2);
         userFragment = new UserFragment();
+
+
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
+        btn_load_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choosePicture();
+            }
+        });
+
+
         btn_show_password = view.findViewById(R.id.btn_show_password2);
         btn_show_password.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +116,8 @@ public class EditUserFragment extends Fragment {
 
                     tv_isHave.setText("Такой логин уже используется");
                 } else {
-                    Call<ResponseBody> changeUserCall = clientAPI.changeUser(StartActivity.currentUserID + 1, edit_name.getText().toString(), edit_password.getText().toString(), "Russia", StartActivity.users.get(StartActivity.currentUserID).getMoney(), StartActivity.users.get(StartActivity.currentUserID).getScore(), StartActivity.users.get(StartActivity.currentUserID).getPhoto());
+                    //Call<ResponseBody> changeUserCall = clientAPI.changeUser(StartActivity.currentUserID + 1, edit_name.getText().toString(), edit_password.getText().toString(), "Russia", StartActivity.users.get(StartActivity.currentUserID).getMoney(), StartActivity.users.get(StartActivity.currentUserID).getScore(), StartActivity.users.get(StartActivity.currentUserID).getPhoto());
+                    Call<ResponseBody> changeUserCall = clientAPI.changeUser(StartActivity.currentUserID + 1, edit_name.getText().toString(), edit_password.getText().toString(), "Russia", StartActivity.users.get(StartActivity.currentUserID).getMoney(), StartActivity.users.get(StartActivity.currentUserID).getScore(), ref);
                     changeUserCall.enqueue(new Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -109,6 +139,7 @@ public class EditUserFragment extends Fragment {
                         getFragmentManager().beginTransaction().remove(fragments.get(size - 1)).commit();
                     StartActivity.users.get(StartActivity.currentUserID).setName(edit_name.getText().toString());
                     StartActivity.users.get(StartActivity.currentUserID).setPassword(edit_password.getText().toString());
+                    StartActivity.users.get(StartActivity.currentUserID).setPhoto(ref);
                 }
             }
         });
@@ -119,5 +150,46 @@ public class EditUserFragment extends Fragment {
     public void onResume() {
         super.onResume();
         MainActivity.usableBack = false;
+    }
+
+    private void choosePicture(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, 1);
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1 && resultCode== -1 && data != null && data.getData()!=null){
+            imageUri = data.getData();
+            edit_user_photo.setImageURI(imageUri);
+            uploadPicture();
+        }
+    }
+
+    private void uploadPicture() {
+
+        //final String randomKey = UUID.randomUUID().toString();
+        ref = UUID.randomUUID().toString();
+        StorageReference riversRef = storageReference.child("images/" + ref);
+        // StorageReference riversRef = storageReference.child("images/qwerty");
+
+
+        riversRef.putFile(imageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+
+                    }
+                });
     }
 }

@@ -3,6 +3,8 @@ package com.example.garbagecollector.fragments.user_fragments;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
@@ -20,17 +22,25 @@ import android.widget.TextView;
 import com.example.garbagecollector.MainActivity;
 import com.example.garbagecollector.R;
 import com.example.garbagecollector.StartActivity;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 
 public class UserFragment extends Fragment {
     private AppCompatButton btn_logout, btn_edit_user;
     private TextView user_info;
-    private EditText et_password, et_country;
+    private EditText et_password;
     FragmentTransaction transaction;
     EditUserFragment editUserFragment;
     private ImageView user_photo;
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
 
 
     @Override
@@ -38,7 +48,7 @@ public class UserFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user, container, false);
         et_password = view.findViewById(R.id.et_password);
-        et_country = view.findViewById(R.id.et_country);
+
         user_info = view.findViewById(R.id.user_info);
         user_photo = view.findViewById(R.id.user_photo);
         user_info.setText(StartActivity.users.get(StartActivity.currentUserID).getName()+
@@ -46,6 +56,25 @@ public class UserFragment extends Fragment {
                 "\nДеньги: " +StartActivity.users.get(StartActivity.currentUserID).getMoney().toString());
         et_password.setText(StartActivity.users.get(StartActivity.currentUserID).getPassword());
         et_password.setTransformationMethod(new PasswordTransformationMethod());
+
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
+        StorageReference riversRef = storageReference.child("images/" + StartActivity.users.get(StartActivity.currentUserID).getPhoto());
+        try {
+            final File file = File.createTempFile("name", "jpg");
+            riversRef.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                   user_photo.setImageBitmap(bitmap);
+
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         btn_logout = view.findViewById(R.id.btn_logout);
         editUserFragment = new EditUserFragment();
         btn_edit_user = view.findViewById(R.id.btn_edit_user);
