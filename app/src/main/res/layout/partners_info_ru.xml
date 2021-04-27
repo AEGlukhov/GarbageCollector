@@ -2,20 +2,29 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="3dp">
 
     <TextView
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:id="@+id/tv_partners_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/partners_info_ru"/>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:layout_marginTop="2dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
         android:layout_gravity="right"
         android:text="@string/got_ru"
         android:id="@+id/btn_close_info"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"
+        android:background="@drawable/button_background"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
 
 </LinearLayout>

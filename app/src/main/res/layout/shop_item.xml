@@ -11,10 +11,14 @@
         android:layout_weight="1"/>
 
     <TextView
+        android:paddingTop="10dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:id="@+id/shop_item_text"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
-        android:textSize="20sp"/>
+        android:textSize="17sp"
+        android:layout_marginLeft="3dp"/>
 
 </LinearLayout>
