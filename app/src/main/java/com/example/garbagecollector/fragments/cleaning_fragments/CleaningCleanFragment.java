@@ -1,9 +1,11 @@
 package com.example.garbagecollector.fragments.cleaning_fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -42,6 +44,7 @@ public class CleaningCleanFragment extends Fragment {
     CleaningCleanAdapter cleaningCleanAdapter;
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class CleaningCleanFragment extends Fragment {
         rv_cleaning_clean = view.findViewById(R.id.rv_cleaning_clean);
         rv_cleaning_clean.setLayoutManager(new LinearLayoutManager(getContext()));
         cleaningCleanAdapter = new CleaningCleanAdapter();
+
         rv_cleaning_clean.setAdapter(cleaningCleanAdapter);
         cleaningMarkFragment = new CleaningMarkFragment();
         btn_mark = view.findViewById(R.id.btn_mark);
@@ -68,6 +72,11 @@ public class CleaningCleanFragment extends Fragment {
         });
         return view;
     }
+
+
+
+
+
 
     @Override
     public void onStart() {

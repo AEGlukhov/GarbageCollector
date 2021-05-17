@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.garbagecollector.fragments.AddPlaceFragment;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -19,6 +20,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
 import java.util.List;
@@ -44,19 +46,16 @@ public class MapMarkActivity extends FragmentActivity implements OnMapReadyCallb
     }
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_mark);
 
         ruLoc = new Locale("ru");
-       // geocoder = new Geocoder(this, Locale.getDefault());
+        // geocoder = new Geocoder(this, Locale.getDefault());
         geocoder = new Geocoder(this, ruLoc);
         searchView = findViewById(R.id.sv_map_mark);
         addPlaceFragment = new AddPlaceFragment();
-
 
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map_mark);
@@ -68,18 +67,24 @@ public class MapMarkActivity extends FragmentActivity implements OnMapReadyCallb
                 String location = searchView.getQuery().toString();
                 List<Address> addressList = null;
 
-                if (location != null || !location.equals("")){
+                if (location != null || !location.equals("")) {
                     Geocoder geocoder = new Geocoder(MapMarkActivity.this);
-                    try{
+                    try {
                         addressList = geocoder.getFromLocationName(location, 1);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
 
-                    Address address = addressList.get(0);
-                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                    map.addMarker(new MarkerOptions().position(latLng).title(location));
-                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+                    map.clear();
+
+                    if (addressList.size()>0) {
+                        Address address = addressList.get(0);
+                        LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                        map.addMarker(new MarkerOptions().position(latLng).title(location));
+                        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+                    } else{
+                        Toast.makeText(getApplicationContext(), "Не получилось определить данное место", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 return false;
@@ -93,8 +98,6 @@ public class MapMarkActivity extends FragmentActivity implements OnMapReadyCallb
         });
 
 
-
-
         mapFragment.getMapAsync(this);
     }
 
@@ -104,6 +107,7 @@ public class MapMarkActivity extends FragmentActivity implements OnMapReadyCallb
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
+                map.clear();
                 isClicked = !isClicked;
                 try {
                     addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
@@ -127,8 +131,8 @@ public class MapMarkActivity extends FragmentActivity implements OnMapReadyCallb
                     transaction.commit();
                     addPlaceFragment.setArguments(b);
 
-                } else{
-                    map.clear();
+                } else {
+                    // map.clear();
                     transaction = getSupportFragmentManager().beginTransaction();
                     transaction.setCustomAnimations(R.anim.slide_in, R.anim.fade_out, R.anim.fade_in, R.anim.slide_out);
                     transaction.remove(addPlaceFragment);

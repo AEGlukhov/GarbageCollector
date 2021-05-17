@@ -149,6 +149,15 @@ public class MainActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
+        } else {
+            transaction = getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.frameLayout, userFragment);
+            transaction.commit();
+            List<Fragment> fragments = getSupportFragmentManager().getFragments();
+            int size = fragments.size();
+            if (size > 0)
+                getSupportFragmentManager().beginTransaction().remove(fragments.get(size - 1)).commit();
+            usableBack = true;
         }
     }
 

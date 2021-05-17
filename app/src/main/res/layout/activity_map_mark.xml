@@ -22,7 +22,7 @@
         app:iconifiedByDefault="false"
         android:id="@+id/sv_map_mark"
 
-        android:background="@color/white"
+        android:background="@drawable/btn_logout"
         android:layout_margin="10dp"
 
 

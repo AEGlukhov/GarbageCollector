@@ -2,17 +2,24 @@ package com.example.garbagecollector.adapters;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.garbagecollector.R;
 import com.example.garbagecollector.StartActivity;
+import com.example.garbagecollector.fragments.cleaning_fragments.CheckPhotoFragment;
 import com.example.garbagecollector.models.Place;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
@@ -28,6 +35,7 @@ public class CleaningMarkAdapter extends RecyclerView.Adapter<CleaningMarkAdapte
     List<Place> shownPlaces;
     private FirebaseStorage storage;
     private StorageReference storageReference;
+    CheckPhotoFragment checkPhotoFragment;
 
     @NonNull
     @Override
@@ -35,6 +43,7 @@ public class CleaningMarkAdapter extends RecyclerView.Adapter<CleaningMarkAdapte
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cleaning_mark_item, parent, false);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
+        checkPhotoFragment = new CheckPhotoFragment();
 
         return new CleaningMarkAdapter.MyViewHolder(view);
     }
@@ -57,11 +66,30 @@ public class CleaningMarkAdapter extends RecyclerView.Adapter<CleaningMarkAdapte
             e.printStackTrace();
         }
 
-        if (shownPlaces.get(position).getCleanerId() == 0) {
-            holder.cleaning_mark_info.setText(shownPlaces.get(position).getAddress() + "\n" + shownPlaces.get(position).getDate() + "\nСтатус: Не убрано");
-        } else {
-            holder.cleaning_mark_info.setText(shownPlaces.get(position).getAddress() + "\n" + shownPlaces.get(position).getDate() + "\nСтатус: Убрано");
+        holder.mark_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle b = new Bundle();
+                b.putInt("id", shownPlaces.get(position).getId());
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                transaction.add(R.id.fl_main, checkPhotoFragment);
+                transaction.commit();
+                checkPhotoFragment.setArguments(b);
+                List<Fragment> fragments = activity.getSupportFragmentManager().getFragments();
+                int size = fragments.size();
+                if (size > 0)
+                    activity.getSupportFragmentManager().beginTransaction().remove(fragments.get(size - 1)).commit();
+            }
+        });
+
+
+        holder.tv_adress_mark.setText(shownPlaces.get(position).getAddress());
+        holder.tv_date_mark.setText(shownPlaces.get(position).getDate());
+        if(shownPlaces.get(position).getCleanerId()!=-1){
+            holder.check_complete.setImageResource(R.drawable.ic_dry_clean);
         }
+
     }
 
     @Override
@@ -76,13 +104,17 @@ public class CleaningMarkAdapter extends RecyclerView.Adapter<CleaningMarkAdapte
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageView cleaning_mark_photo;
-        TextView cleaning_mark_info;
+        ImageView cleaning_mark_photo, check_complete;
+        LinearLayout mark_item;
+        TextView tv_adress_mark, tv_date_mark;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             cleaning_mark_photo = itemView.findViewById(R.id.cleaning_mark_photo);
-            cleaning_mark_info = itemView.findViewById(R.id.cleaning_mark_info);
+            tv_adress_mark = itemView.findViewById(R.id.tv_adress_mark);
+            tv_date_mark = itemView.findViewById(R.id.tv_date_mark);
+            mark_item = itemView.findViewById(R.id.mark_item);
+            check_complete = itemView.findViewById(R.id.check_complete);
         }
     }
 }

@@ -1,12 +1,16 @@
 package com.example.garbagecollector.fragments.user_fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -24,10 +28,13 @@ import com.example.garbagecollector.R;
 import com.example.garbagecollector.StartActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -60,7 +67,7 @@ public class EditUserFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_user, container, false);
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.0.13:8080").addConverterFactory(GsonConverterFactory.create()).build();
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.0.176:8080").addConverterFactory(GsonConverterFactory.create()).build();
         clientAPI = retrofit.create(ClientAPI.class);
         ref = StartActivity.users.get(StartActivity.currentUserID).getPhoto();
         edit_name = view.findViewById(R.id.edit_name);
@@ -74,6 +81,25 @@ public class EditUserFragment extends Fragment {
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
+
+        StorageReference riversRef = storageReference.child("images/" + StartActivity.users.get(StartActivity.currentUserID).getPhoto());
+        try {
+            final File file = File.createTempFile("name", "jpg");
+            riversRef.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                    edit_user_photo.setImageBitmap(bitmap);
+                    //RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(null, bitmap);
+                    //roundedBitmapDrawable.setCircular(true);
+                   // user_photo.setImageDrawable(roundedBitmapDrawable);
+
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         btn_load_photo.setOnClickListener(new View.OnClickListener() {
             @Override

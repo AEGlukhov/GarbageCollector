@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/tv_reference"
+        android:padding="12dp"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"
+        android:text="Чтобы завершить, выберите фото, подтверждающие, что вы сделали уборку в этом месте."
+        android:textSize="20sp"
+        android:layout_margin="12dp"
+        android:background="@drawable/btn_logout"
+        android:textColor="@color/black"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="Необходимо добавить фото"
+        android:textStyle="bold"
+        android:id="@+id/tv_no_photo"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/white"/>
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="80dp"
+        android:scaleType="centerCrop"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="80dp"
+        android:id="@+id/img_choose_clean"
+        android:src="@drawable/ic_image"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_compelete_clean"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="25dp"
+
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_background"
+        android:text="Завершить"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+</LinearLayout>

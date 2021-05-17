@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -52,7 +53,7 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.0.13:8080").addConverterFactory(GsonConverterFactory.create()).build();
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.0.176:8080").addConverterFactory(GsonConverterFactory.create()).build();
         clientAPI = retrofit.create(ClientAPI.class);
         Call<List<User>> call = clientAPI.getUsers();
         call.enqueue(new Callback<List<User>>() {
@@ -63,12 +64,13 @@ public class StartActivity extends AppCompatActivity {
 
 
                 } else {
+                    Log.d("MyTag", response.code()+ " ");
                 }
             }
 
             @Override
             public void onFailure(Call<List<User>> call, Throwable t) {
-
+                Log.d("MyTag", t.getMessage());
             }
         });
         UpdateThread updateThread = new UpdateThread();
@@ -136,6 +138,7 @@ public class StartActivity extends AppCompatActivity {
                         edt.putString("Password", login_password.getText().toString());
                         edt.commit();
                     }
+
                     Intent intent = new Intent(StartActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {

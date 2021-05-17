@@ -2,6 +2,7 @@
 <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:id="@+id/rv_leaderboard">
+    android:id="@+id/rv_leaderboard"
+    android:layout_marginTop="3dp">
 
 </androidx.recyclerview.widget.RecyclerView>

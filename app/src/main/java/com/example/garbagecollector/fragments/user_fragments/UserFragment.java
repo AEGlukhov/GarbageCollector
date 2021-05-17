@@ -8,6 +8,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -33,8 +35,8 @@ import java.util.List;
 
 
 public class UserFragment extends Fragment {
-    private AppCompatButton btn_logout, btn_edit_user;
-    private TextView user_info;
+    private AppCompatButton btn_logout;
+    private TextView user_info, btn_edit_user, user_name;
     private EditText et_password;
     FragmentTransaction transaction;
     EditUserFragment editUserFragment;
@@ -50,10 +52,11 @@ public class UserFragment extends Fragment {
         et_password = view.findViewById(R.id.et_password);
 
         user_info = view.findViewById(R.id.user_info);
+        user_name = view.findViewById(R.id.user_name);
+        user_name.setText(StartActivity.users.get(StartActivity.currentUserID).getName());
         user_photo = view.findViewById(R.id.user_photo);
-        user_info.setText(StartActivity.users.get(StartActivity.currentUserID).getName()+
-                "\nОчки: " +StartActivity.users.get(StartActivity.currentUserID).getScore().toString() +
-                "\nДеньги: " +StartActivity.users.get(StartActivity.currentUserID).getMoney().toString());
+        user_info.setText("Деньги: " + StartActivity.users.get(StartActivity.currentUserID).getMoney().toString()
+                + "\nОчки: " + StartActivity.users.get(StartActivity.currentUserID).getScore().toString());
         et_password.setText(StartActivity.users.get(StartActivity.currentUserID).getPassword());
         et_password.setTransformationMethod(new PasswordTransformationMethod());
 
@@ -67,7 +70,10 @@ public class UserFragment extends Fragment {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                     Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-                   user_photo.setImageBitmap(bitmap);
+                    user_photo.setImageBitmap(bitmap);
+                    RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(null, bitmap);
+                    roundedBitmapDrawable.setCircular(true);
+                    user_photo.setImageDrawable(roundedBitmapDrawable);
 
                 }
             });

@@ -12,30 +12,62 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/selectImage"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_margin="12dp"
-            android:scaleType="centerCrop"
-            android:id="@+id/selectImage"
-            android:background="@drawable/ic_baseline_image_search_24"
-            android:layout_weight="1"/>
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_image"
+            android:scaleType="centerCrop" />
 
-        <TextView
-            android:id="@+id/tv_test"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
-            android:background="@color/white"
-            android:gravity="center"
-            android:text="PLACE"
-            android:textSize="20sp" />
+            android:layout_marginTop="17dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_test"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="5"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="PLACE"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/red"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:id="@+id/tv_need_photo"
+                android:gravity="bottom"
+                android:layout_marginBottom="20dp"
+                android:text="Необходимо выбрать фото"/>
+        </LinearLayout>
+
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/add_marked_place"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="12dp"
         android:layout_weight="1"
-        android:layout_margin="12dp"
-        android:text="добавить" />
+        android:background="@drawable/button_background"
+        android:text="Добавить"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 </LinearLayout>

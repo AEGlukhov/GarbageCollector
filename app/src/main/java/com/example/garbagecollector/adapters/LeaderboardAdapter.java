@@ -2,6 +2,7 @@ package com.example.garbagecollector.adapters;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.garbagecollector.R;
@@ -63,6 +66,9 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                     Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
                     holder.leaderboard_photo.setImageBitmap(bitmap);
+                    RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(null, bitmap);
+                    roundedBitmapDrawable.setCircular(true);
+                    holder.leaderboard_photo.setImageDrawable(roundedBitmapDrawable);
                 }
             });
 
@@ -73,15 +79,19 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
 
 
         if (position == 0){
-            holder.leaderboard_photo.setBackgroundResource(R.drawable.gold_frame);
+            holder.leaderboard_position.setTextColor(Color.parseColor("#FFCC00"));
+            holder.leaderboard_position.setTextSize(18);
         }
         if (position == 1){
-            holder.leaderboard_photo.setBackgroundResource(R.drawable.silver_frame);
+            holder.leaderboard_position.setTextColor(Color.parseColor("#008B8B"));
+            holder.leaderboard_position.setTextSize(18);
         }
         if (position == 2){
-            holder.leaderboard_photo.setBackgroundResource(R.drawable.bronze_frame);
+            holder.leaderboard_position.setTextColor(Color.parseColor("#CC6600"));
+            holder.leaderboard_position.setTextSize(18);
         }
-        holder.leaderboard_name_score.setText(topUsers.get(position).getName() + "\n" + topUsers.get(position).getScore().toString());
+        holder.leaderboard_name.setText(topUsers.get(position).getName());
+        holder.leaderboard_score.setText("Очки: " + topUsers.get(position).getScore().toString());
         holder.leaderboard_position.setText(position + 1 + "");
     }
 
@@ -98,14 +108,15 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
     class MyViewHolder extends RecyclerView.ViewHolder {
 
         ImageView leaderboard_photo, leaderboard_country;
-        TextView leaderboard_name_score, leaderboard_position;
+        TextView leaderboard_name, leaderboard_score, leaderboard_position;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             leaderboard_photo = itemView.findViewById(R.id.leaderboard_photo);
             leaderboard_country = itemView.findViewById(R.id.leaderboard_country);
-            leaderboard_name_score = itemView.findViewById(R.id.leaderboard_name_score);
+            leaderboard_name = itemView.findViewById(R.id.leaderboard_name);
+            leaderboard_score = itemView.findViewById(R.id.leaderboard_score);
             leaderboard_position = itemView.findViewById(R.id.leaderboard_position);
         }
     }

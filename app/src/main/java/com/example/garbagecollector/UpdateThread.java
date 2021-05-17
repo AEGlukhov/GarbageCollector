@@ -17,7 +17,7 @@ public class UpdateThread extends Thread {
     ClientAPI clientAPI;
 
     public UpdateThread() {
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.0.13:8080").addConverterFactory(GsonConverterFactory.create()).build();
+        retrofit = new Retrofit.Builder().baseUrl("http://192.168.0.176:8080").addConverterFactory(GsonConverterFactory.create()).build();
         clientAPI = retrofit.create(ClientAPI.class);
     }
 
