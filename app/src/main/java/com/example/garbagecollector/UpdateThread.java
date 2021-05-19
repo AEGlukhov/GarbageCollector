@@ -13,8 +13,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UpdateThread extends Thread {
-    Retrofit retrofit;
-    ClientAPI clientAPI;
+    private Retrofit retrofit;
+    private ClientAPI clientAPI;
 
     public UpdateThread() {
         retrofit = new Retrofit.Builder().baseUrl("http://188.225.46.21:8084").addConverterFactory(GsonConverterFactory.create()).build();

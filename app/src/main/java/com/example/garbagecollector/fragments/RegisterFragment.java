@@ -31,8 +31,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegisterFragment extends Fragment {
     private TextView tv_isHave;
-    Retrofit retrofit;
-    ClientAPI clientAPI;
+    private Retrofit retrofit;
+    private ClientAPI clientAPI;
     private AppCompatButton btn_register;
     private ImageView btn_show_password;
     private boolean showPassword = false;
@@ -73,7 +73,7 @@ public class RegisterFragment extends Fragment {
             public void onClick(View v) {
                 boolean isHave = false;
                 for (int i = 0; i < StartActivity.users.size(); i++) {
-                    if(register_name.getText().toString().equals(StartActivity.users.get(i).getName())){
+                    if (register_name.getText().toString().equals(StartActivity.users.get(i).getName())) {
                         isHave = true;
                     }
                 }

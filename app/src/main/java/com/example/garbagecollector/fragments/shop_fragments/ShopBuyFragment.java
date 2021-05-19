@@ -30,8 +30,6 @@ public class ShopBuyFragment extends Fragment {
     private ImageView partners_info;
 
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,15 +50,16 @@ public class ShopBuyFragment extends Fragment {
 
         return view;
     }
+
     @Override
     public void onStart() {
         super.onStart();
         MainActivity.setIsFirstFragment(false);
-        ((TextView)getActivity().findViewById(R.id.title_main)).setText(R.string.shop_title_ru);
-        ((ImageView)getActivity().findViewById(R.id.btn_shop)).setImageResource(R.drawable.ic_shop_green);
-        ((ImageView)getActivity().findViewById(R.id.btn_cleaning)).setImageResource(R.drawable.ic_cleaning_gray);
-        ((ImageView)getActivity().findViewById(R.id.btn_leaderboard)).setImageResource(R.drawable.ic_leaderboard_gray);
-        ((ImageView)getActivity().findViewById(R.id.btn_user)).setImageResource(R.drawable.ic_user_gray);
+        ((TextView) getActivity().findViewById(R.id.title_main)).setText(R.string.shop_title_ru);
+        ((ImageView) getActivity().findViewById(R.id.btn_shop)).setImageResource(R.drawable.ic_shop_green);
+        ((ImageView) getActivity().findViewById(R.id.btn_cleaning)).setImageResource(R.drawable.ic_cleaning_gray);
+        ((ImageView) getActivity().findViewById(R.id.btn_leaderboard)).setImageResource(R.drawable.ic_leaderboard_gray);
+        ((ImageView) getActivity().findViewById(R.id.btn_user)).setImageResource(R.drawable.ic_user_gray);
 
 
     }

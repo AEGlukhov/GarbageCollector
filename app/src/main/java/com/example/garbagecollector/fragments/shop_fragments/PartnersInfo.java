@@ -20,6 +20,7 @@ import java.util.List;
 
 public class PartnersInfo extends AppCompatDialogFragment {
     private AppCompatButton btn_close_info;
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {

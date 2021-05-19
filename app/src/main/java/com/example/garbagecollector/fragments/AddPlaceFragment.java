@@ -38,14 +38,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AddPlaceFragment extends Fragment {
 
-    String ref = "photo";
-    TextView textView, tv_need_photo;
-    AppCompatButton add_marked_place;
-    Retrofit retrofit;
-    ClientAPI clientAPI;
+    private String ref = "photo";
+    private TextView textView, tv_need_photo;
+    private AppCompatButton add_marked_place;
+    private Retrofit retrofit;
+    private ClientAPI clientAPI;
     private Uri imageUri;
-    ImageView selectImage;
-    boolean photoAdded;
+    private ImageView selectImage;
+    private boolean photoAdded;
     private FirebaseStorage storage;
     private StorageReference storageReference;
 
@@ -95,7 +95,7 @@ public class AddPlaceFragment extends Fragment {
                     });
 
                     getActivity().onBackPressed();
-                } else{
+                } else {
                     tv_need_photo.setText("Необходимо выбрать фото");
                 }
             }

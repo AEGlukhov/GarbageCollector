@@ -63,12 +63,12 @@ public interface ClientAPI {
     Call<ResponseBody> changePlace(@Field("id") Integer id,
                                    @Field("ownerId") Integer OwnerId,
                                    @Field("cleanerId") Integer cleanerId,
-                                   @Field("address")String address,
-                                   @Field("date")String date,
-                                   @Field("photo")String photo,
-                                   @Field("lat")Double lat,
-                                   @Field("lon")Double lon,
-                                   @Field("proof")String proof);
+                                   @Field("address") String address,
+                                   @Field("date") String date,
+                                   @Field("photo") String photo,
+                                   @Field("lat") Double lat,
+                                   @Field("lon") Double lon,
+                                   @Field("proof") String proof);
 
 
 }

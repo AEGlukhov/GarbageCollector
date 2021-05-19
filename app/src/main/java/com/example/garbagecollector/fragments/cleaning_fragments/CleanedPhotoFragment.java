@@ -40,16 +40,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class CleanedPhotoFragment extends Fragment {
-    Retrofit retrofit;
-    ClientAPI clientAPI;
-    ImageView imageView;
-    AppCompatButton btn;
-    int id;
+    private Retrofit retrofit;
+    private ClientAPI clientAPI;
+    private ImageView imageView;
+    private AppCompatButton btn;
+    private int id;
     private Uri imageUri;
     private FirebaseStorage storage;
     private StorageReference storageReference;
-    String ref = "photo";
-    TextView textView, tv_no_photo;
+    private String ref = "photo";
+    private TextView textView, tv_no_photo;
     boolean photoAdded;
 
 
@@ -102,7 +102,7 @@ public class CleanedPhotoFragment extends Fragment {
                     });
                     getActivity().onBackPressed();
                 } else {
-                   tv_no_photo.setTextColor(Color.RED);
+                    tv_no_photo.setTextColor(Color.RED);
                 }
             }
         });

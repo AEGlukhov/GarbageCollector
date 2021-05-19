@@ -28,16 +28,16 @@ import java.util.Locale;
 
 public class MapMarkActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    GoogleMap map;
-    SupportMapFragment mapFragment;
-    SearchView searchView;
+    private GoogleMap map;
+    private SupportMapFragment mapFragment;
+    private SearchView searchView;
 
-    FragmentTransaction transaction;
-    AddPlaceFragment addPlaceFragment;
+    private FragmentTransaction transaction;
+    private AddPlaceFragment addPlaceFragment;
     private boolean isClicked = false;
-    Geocoder geocoder;
-    List<Address> addresses;
-    Locale ruLoc;
+    private Geocoder geocoder;
+    private List<Address> addresses;
+    private Locale ruLoc;
 
 
     @Override
@@ -77,12 +77,12 @@ public class MapMarkActivity extends FragmentActivity implements OnMapReadyCallb
 
                     map.clear();
 
-                    if (addressList.size()>0) {
+                    if (addressList.size() > 0) {
                         Address address = addressList.get(0);
                         LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
                         map.addMarker(new MarkerOptions().position(latLng).title(location));
                         map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
-                    } else{
+                    } else {
                         Toast.makeText(getApplicationContext(), "Не получилось определить данное место", Toast.LENGTH_SHORT).show();
                     }
                 }

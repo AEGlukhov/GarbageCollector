@@ -31,7 +31,7 @@ import java.util.List;
 
 public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.MyViewHolder> {
 
-    List<User> topUsers;
+    private List<User> topUsers;
     private FirebaseStorage storage;
     private StorageReference storageReference;
 

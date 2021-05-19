@@ -40,10 +40,10 @@ import java.util.List;
 
 public class CleaningCleanAdapter extends RecyclerView.Adapter<CleaningCleanAdapter.MyViewHolder> {
 
-    List<Place> shownPlaces;
+    private List<Place> shownPlaces;
     private FirebaseStorage storage;
     private StorageReference storageReference;
-    CleanedPhotoFragment cleanedPhotoFragment;
+    private CleanedPhotoFragment cleanedPhotoFragment;
 
 
 

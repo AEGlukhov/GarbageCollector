@@ -92,7 +92,7 @@ public class EditUserFragment extends Fragment {
                     edit_user_photo.setImageBitmap(bitmap);
                     //RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(null, bitmap);
                     //roundedBitmapDrawable.setCircular(true);
-                   // user_photo.setImageDrawable(roundedBitmapDrawable);
+                    // user_photo.setImageDrawable(roundedBitmapDrawable);
 
                 }
             });
@@ -134,11 +134,11 @@ public class EditUserFragment extends Fragment {
             public void onClick(View v) {
                 boolean isHave = false;
                 for (int i = 0; i < StartActivity.users.size(); i++) {
-                    if (edit_name.getText().toString().equals(StartActivity.users.get(i).getName()) ) {
+                    if (edit_name.getText().toString().equals(StartActivity.users.get(i).getName())) {
                         isHave = true;
                     }
                 }
-                if (isHave == true&& !edit_name.getText().toString().equals(StartActivity.users.get(StartActivity.currentUserID).getName())) {
+                if (isHave == true && !edit_name.getText().toString().equals(StartActivity.users.get(StartActivity.currentUserID).getName())) {
 
                     tv_isHave.setText("Такой логин уже используется");
                 } else {
@@ -178,7 +178,7 @@ public class EditUserFragment extends Fragment {
         MainActivity.usableBack = false;
     }
 
-    private void choosePicture(){
+    private void choosePicture() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -189,7 +189,7 @@ public class EditUserFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1 && resultCode== -1 && data != null && data.getData()!=null){
+        if (requestCode == 1 && resultCode == -1 && data != null && data.getData() != null) {
             imageUri = data.getData();
             edit_user_photo.setImageURI(imageUri);
             uploadPicture();

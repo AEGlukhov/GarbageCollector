@@ -38,11 +38,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CleaningCleanFragment extends Fragment {
     private TextView btn_mark;
-    CleaningMarkFragment cleaningMarkFragment;
-    FragmentTransaction transaction;
-    RecyclerView rv_cleaning_clean;
-    CleaningCleanAdapter cleaningCleanAdapter;
-
+    private CleaningMarkFragment cleaningMarkFragment;
+    private FragmentTransaction transaction;
+    private RecyclerView rv_cleaning_clean;
+    private CleaningCleanAdapter cleaningCleanAdapter;
 
 
     @Override
@@ -72,10 +71,6 @@ public class CleaningCleanFragment extends Fragment {
         });
         return view;
     }
-
-
-
-
 
 
     @Override

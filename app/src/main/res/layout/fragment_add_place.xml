@@ -40,14 +40,14 @@
                 android:gravity="center"
                 android:text="PLACE"
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textSize="14sp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/red"
                 android:textStyle="bold"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:id="@+id/tv_need_photo"
                 android:gravity="bottom"
                 android:layout_marginBottom="20dp"

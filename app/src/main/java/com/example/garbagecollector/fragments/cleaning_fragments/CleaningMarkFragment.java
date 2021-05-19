@@ -33,12 +33,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class CleaningMarkFragment extends Fragment {
-    AppCompatButton btn_add;
+    private AppCompatButton btn_add;
     private TextView btn_clean;
-    CleaningCleanFragment cleaningCleanFragmentFragment;
-    FragmentTransaction transaction;
-    RecyclerView rv_cleaning_mark;
-    CleaningMarkAdapter cleaningMarkAdapter;
+    private CleaningCleanFragment cleaningCleanFragmentFragment;
+    private FragmentTransaction transaction;
+    private RecyclerView rv_cleaning_mark;
+    private CleaningMarkAdapter cleaningMarkAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -32,10 +32,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CleaningMarkAdapter extends RecyclerView.Adapter<CleaningMarkAdapter.MyViewHolder> {
-    List<Place> shownPlaces;
+    private List<Place> shownPlaces;
     private FirebaseStorage storage;
     private StorageReference storageReference;
-    CheckPhotoFragment checkPhotoFragment;
+    private CheckPhotoFragment checkPhotoFragment;
 
     @NonNull
     @Override
@@ -86,7 +86,7 @@ public class CleaningMarkAdapter extends RecyclerView.Adapter<CleaningMarkAdapte
 
         holder.tv_adress_mark.setText(shownPlaces.get(position).getAddress());
         holder.tv_date_mark.setText(shownPlaces.get(position).getDate());
-        if(shownPlaces.get(position).getCleanerId()!=-1){
+        if (shownPlaces.get(position).getCleanerId() != -1) {
             holder.check_complete.setImageResource(R.drawable.ic_dry_clean);
         }
 

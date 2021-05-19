@@ -1,15 +1,15 @@
 package com.example.garbagecollector.models;
 
 public class Place {
-    Integer id;
-    Integer ownerId;
-    Integer cleanerId;
-    String address;
-    String date;
-    String photo;
-    Double lat;
-    Double lon;
-    String proof;
+    private Integer id;
+    private Integer ownerId;
+    private Integer cleanerId;
+    private String address;
+    private String date;
+    private String photo;
+    private Double lat;
+    private Double lon;
+    private String proof;
 
     public Place(Integer id, Integer ownerId, Integer cleanerId, String address, String date, String photo, Double lat, Double lon, String proof) {
         this.id = id;

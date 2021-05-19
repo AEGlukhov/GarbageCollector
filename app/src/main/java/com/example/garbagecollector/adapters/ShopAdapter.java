@@ -15,15 +15,14 @@ import com.example.garbagecollector.R;
 
 public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.MyViewHolder> {
 
-    String[] partners_ru = {"Сервисы Яндекс", "Самсунг", "Макдональдс"};
-    int[] images = {R.drawable.ic_yandex, R.drawable.ic_samsung,R.drawable.ic_mcdonalds};
+    private String[] partners_ru = {"Сервисы Яндекс", "Самсунг", "Макдональдс"};
+    private int[] images = {R.drawable.ic_yandex, R.drawable.ic_samsung, R.drawable.ic_mcdonalds};
 
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.shop_item, parent, false);
-
 
 
         return new MyViewHolder(view);
@@ -34,7 +33,6 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.MyViewHolder> 
 
         holder.shop_item_image.setImageResource(images[position]);
         holder.shop_item_text.setText(partners_ru[position]);
-
 
 
     }

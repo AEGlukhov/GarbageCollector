@@ -23,11 +23,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     public static boolean usableBack;
     private FrameLayout frameLayout;
-    CleaningCleanFragment cleaningCleanFragment;
-    LeaderboardFragment leaderboardFragment;
-    ShopBuyFragment shopBuyFragment;
-    UserFragment userFragment;
-    FragmentTransaction transaction;
+    private CleaningCleanFragment cleaningCleanFragment;
+    private LeaderboardFragment leaderboardFragment;
+    private ShopBuyFragment shopBuyFragment;
+    private UserFragment userFragment;
+    private FragmentTransaction transaction;
     private ImageView btn_cleaning, btn_leaderboard, btn_shop, btn_user;
     private TextView title_main;
     private static boolean isFirstFragment;

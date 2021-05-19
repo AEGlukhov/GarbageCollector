@@ -35,12 +35,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CheckPhotoFragment extends Fragment {
-    Retrofit retrofit;
-    ClientAPI clientAPI;
-    ImageView imgCheck;
-    int id;
-    TextView tv_check_info;
-    AppCompatButton btn_accept_clean, btn_reject_clean;
+    private Retrofit retrofit;
+    private ClientAPI clientAPI;
+    private ImageView imgCheck;
+    private int id;
+    private TextView tv_check_info;
+    private AppCompatButton btn_accept_clean, btn_reject_clean;
     private FirebaseStorage storage;
     private StorageReference storageReference;
 

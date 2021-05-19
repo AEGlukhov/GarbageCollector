@@ -33,15 +33,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class StartActivity extends AppCompatActivity {
     public static Integer currentUserID;
-    Retrofit retrofit;
-    ClientAPI clientAPI;
+    private Retrofit retrofit;
+    private ClientAPI clientAPI;
     public static List<User> users;
     public static List<Place> places;
     private AppCompatButton btn_login;
     private EditText login_name, login_password;
     private TextView btn_registration, incorrect_login_password;
-    FragmentTransaction transaction;
-    RegisterFragment registerFragment;
+    private FragmentTransaction transaction;
+    private RegisterFragment registerFragment;
     private static boolean isRegisterFragment;
     private boolean rememberMe = false;
     private ImageView checkbox_remember;
@@ -67,7 +67,7 @@ public class StartActivity extends AppCompatActivity {
 
 
                 } else {
-                    Log.d("MyTag", response.code()+ " ");
+                    Log.d("MyTag", response.code() + " ");
                 }
             }
 
@@ -115,7 +115,7 @@ public class StartActivity extends AppCompatActivity {
 
 
                 }
-                rememberMe =!rememberMe;
+                rememberMe = !rememberMe;
             }
         });
         btn_registration = findViewById(R.id.btn_registration);
@@ -134,7 +134,7 @@ public class StartActivity extends AppCompatActivity {
                 if (isHave == true && login_password.getText().toString().equals(StartActivity.users.get(thisID).getPassword())) {
                     currentUserID = thisID;
                     incorrect_login_password.setText("");
-                    if (rememberMe == true){
+                    if (rememberMe == true) {
                         SharedPreferences sp = getSharedPreferences("Key", Activity.MODE_PRIVATE);
                         SharedPreferences.Editor edt = sp.edit();
                         edt.putString("Name", login_name.getText().toString());
