@@ -20,10 +20,7 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/gray"/>
+
 
 
         <TextView
@@ -40,37 +37,17 @@
 
     </LinearLayout>
 
-    <ImageView
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/gray" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Москва"
-            android:textSize="18sp"/>
-
-        <ImageView
-            android:layout_marginTop="5dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/ic_arrow_down" />
-
-    </LinearLayout>
+        android:background="@color/gray"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_cleaning_clean"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="15" />
 
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.garbagecollector;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -52,8 +53,10 @@ public class StartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_start);
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.0.176:8080").addConverterFactory(GsonConverterFactory.create()).build();
+
+        retrofit = new Retrofit.Builder().baseUrl("http://188.225.46.21:8084").addConverterFactory(GsonConverterFactory.create()).build();
         clientAPI = retrofit.create(ClientAPI.class);
         Call<List<User>> call = clientAPI.getUsers();
         call.enqueue(new Callback<List<User>>() {
